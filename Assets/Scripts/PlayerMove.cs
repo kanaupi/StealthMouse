@@ -39,13 +39,15 @@ public class PlayerMove : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(moveForward);
         }
 
-        //jump
+        //jumpスクリプト
         if (Input.GetKeyDown(KeyCode.Space)&&!isJump)
         {
             isJump = true;
-            rb.velocity += new Vector3(0, 3, 0);
+            rb.velocity += new Vector3(0, 4, 0);
         }
     }
+
+    //床と接しているかを判定
     private void OnCollisionEnter(Collision collision)
     {
         isJump = false;
