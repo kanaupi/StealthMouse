@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GetFoodScrpt : MonoBehaviour
 {
+    public Text scoreText;
     //アイテムに近づいた時に表示するテキストが入ったgameObject
     GameObject CheeseText;
     int score = 0;
@@ -34,6 +35,7 @@ public class GetFoodScrpt : MonoBehaviour
                 CheeseText.gameObject.SetActive(false);
                 Destroy(other.gameObject);
                 score++;
+                scoreText.text = "Score：" + score.ToString();
                 Debug.Log(score);
             }
         }
