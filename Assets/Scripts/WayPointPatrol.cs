@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class WayPointPatrol : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class WayPointPatrol : MonoBehaviour
 
     //ステージ内を巡回するポイント
     public Transform[] waypoints;
+
+    public GameEnding gameEnding;
+
     Transform player;
     //プレイヤー発見時にwaypointにタゲをなすりつけるのを防止
     bool isDetected=false;
@@ -21,16 +25,24 @@ public class WayPointPatrol : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         navMeshAgent.SetDestination(waypoints[0].position);
+
     }
 
     // Update is called once per frame
     void Update()
     {
         Debug.Log(isDetected);
+        //waypoint到着時に呼ばれる
         if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance&&!isDetected)
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
             navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
+        }
+        //プレイヤー到着時に呼ばれる
+        if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance && isDetected)
+        {
+            Debug.Log("GameOver");
+            gameEnding.IsCaught();
         }
         if (navMeshAgent.remainingDistance > loseSightDistance && isDetected)
         {
