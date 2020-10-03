@@ -36,7 +36,7 @@ public class GameEnding : MonoBehaviour
 
         if (timer > fadeDuration + displayImageDuration)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("Result");
 
         }
     }
