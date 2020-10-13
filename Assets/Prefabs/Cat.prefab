@@ -1148,6 +1148,7 @@ MonoBehaviour:
   navMeshAgent: {fileID: 7906234414005787498}
   loseSightDistance: 5
   waypoints: []
+  gameEnding: {fileID: 0}
 --- !u!1 &4544486450630400966
 GameObject:
   m_ObjectHideFlags: 0
