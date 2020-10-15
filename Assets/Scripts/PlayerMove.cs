@@ -7,19 +7,29 @@ public class PlayerMove : MonoBehaviour
     float inputHorizontal;
     float inputVertical;
     Rigidbody rb;
+    Animator animator;
 
     float moveSpeed = 3f;
     bool isJump;
+    bool isWalking;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator=GetComponent<Animator>();
     }
 
     void Update()
     {
         inputHorizontal = Input.GetAxisRaw("Horizontal");
         inputVertical = Input.GetAxisRaw("Vertical");
-
+        if (isWalking)
+        {
+            animator.SetBool("IsWalking", true);
+        }
+        else
+        {
+            animator.SetBool("IsWalking", false);
+        }
     }
 
     void FixedUpdate()
@@ -30,20 +40,27 @@ public class PlayerMove : MonoBehaviour
         // 方向キーの入力値とカメラの向きから、移動方向を決定
         Vector3 moveForward = cameraForward * inputVertical + Camera.main.transform.right * inputHorizontal;
 
+        
+
         // 移動方向にスピードを掛ける。ジャンプや落下がある場合は、別途Y軸方向の速度ベクトルを足す。
         rb.velocity = moveForward * moveSpeed + new Vector3(0, rb.velocity.y, 0);
 
         // キャラクターの向きを進行方向に
         if (moveForward != Vector3.zero)
         {
+            isWalking = true;
             transform.rotation = Quaternion.LookRotation(moveForward);
+        }
+        else
+        {
+            isWalking = false;
         }
 
         //jumpスクリプト
         if (Input.GetKeyDown(KeyCode.Space)&&!isJump)
         {
             isJump = true;
-            rb.velocity += new Vector3(0, 4, 0);
+            rb.velocity += new Vector3(0, 2, 0);
         }
     }
 

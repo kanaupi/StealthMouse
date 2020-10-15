@@ -8,13 +8,12 @@ public class GetFoodScrpt : MonoBehaviour
     public Text scoreText;
     public static int score;
     //アイテムに近づいた時に表示するテキストが入ったgameObject
-    GameObject CheeseText;
+    public GameObject CheeseText;
+
     bool oneTimeCalled=true;
     // Start is called before the first frame update
     void Start()
     {
-        CheeseText = GameObject.Find("CheesePop");
-        CheeseText.gameObject.SetActive(false);
         score = 0;
     }
 
