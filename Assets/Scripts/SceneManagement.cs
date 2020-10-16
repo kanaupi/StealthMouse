@@ -22,12 +22,13 @@ public class SceneManagement : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
-    public void Gallery()
+    public void Information()
     {
-        SceneManager.LoadScene("Gallery");
+        SceneManager.LoadScene("Information");
     }
     public void Title()
     {
         SceneManager.LoadScene("Title");
     }
+    
 }

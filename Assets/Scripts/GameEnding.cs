@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameEnding : MonoBehaviour
 {
-    public float fadeDuration = 1.0f;
+    public float fadeDuration = 0.5f;
     public float displayImageDuration = 1f;
     public CanvasGroup clearBackgroundImageCanvasGroup;
     public CanvasGroup caughtBackgroundImageCanvasGroup;
