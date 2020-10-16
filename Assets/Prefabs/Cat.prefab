@@ -1120,7 +1120,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 4544486450630400964}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.1
   m_Speed: 1.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -1149,6 +1149,7 @@ MonoBehaviour:
   loseSightDistance: 5
   waypoints: []
   gameEnding: {fileID: 0}
+  exclamationPop: {fileID: 0}
 --- !u!1 &4544486450630400966
 GameObject:
   m_ObjectHideFlags: 0

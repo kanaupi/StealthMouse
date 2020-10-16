@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class WayPointPatrol : MonoBehaviour
@@ -16,6 +17,9 @@ public class WayPointPatrol : MonoBehaviour
     public GameEnding gameEnding;
 
     Transform player;
+
+    public GameObject exclamationPop;
+
     //プレイヤー発見時にwaypointにタゲをなすりつけるのを防止
     bool isDetected=false;
 
@@ -31,7 +35,7 @@ public class WayPointPatrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(isDetected);
+        
         //waypoint到着時に呼ばれる
         if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance&&!isDetected)
         {
@@ -39,13 +43,14 @@ public class WayPointPatrol : MonoBehaviour
             navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
         }
         //プレイヤー到着時に呼ばれる
-        if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance && isDetected)
+        if ((navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance) && isDetected)
         {
-            Debug.Log("GameOver");
+            exclamationPop.SetActive(false);
             gameEnding.IsCaught();
         }
         if (navMeshAgent.remainingDistance > loseSightDistance && isDetected)
         {
+            exclamationPop.SetActive(false);
             navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
             isDetected = false;
         }
@@ -54,6 +59,7 @@ public class WayPointPatrol : MonoBehaviour
     public void DetectPlayer()
     {
         isDetected = true;
+        exclamationPop.SetActive(true);
         navMeshAgent.SetDestination(player.position);
     }
 }
