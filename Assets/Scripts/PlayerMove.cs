@@ -60,7 +60,7 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)&&!isJump)
         {
             isJump = true;
-            rb.velocity += new Vector3(0, 2, 0);
+            rb.velocity += new Vector3(0, 5, 0);
         }
     }
 

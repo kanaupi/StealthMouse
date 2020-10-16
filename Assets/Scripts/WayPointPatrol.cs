@@ -48,7 +48,7 @@ public class WayPointPatrol : MonoBehaviour
             exclamationPop.SetActive(false);
             gameEnding.IsCaught();
         }
-        if (navMeshAgent.remainingDistance > loseSightDistance && isDetected)
+        if ((navMeshAgent.remainingDistance > loseSightDistance) && isDetected)
         {
             exclamationPop.SetActive(false);
             navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);

@@ -1984,7 +1984,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1.8, z: 0.4}
-  m_Center: {x: 0, y: 0.9, z: 0}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!54 &7583595858716970213
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2010,13 +2010,13 @@ PlayableDirector:
   m_GameObject: {fileID: 7583595858716970215}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: ec8b74ab8c30d408e864a0ee724f37f5, type: 2}
+  m_PlayableAsset: {fileID: 0}
   m_InitialState: 1
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: 7579835485609508873, guid: ec8b74ab8c30d408e864a0ee724f37f5, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 7583595858716970219}
   m_ExposedReferences:
     m_References: []
