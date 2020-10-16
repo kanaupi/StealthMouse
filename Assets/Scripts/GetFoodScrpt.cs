@@ -34,7 +34,7 @@ public class GetFoodScrpt : MonoBehaviour
                 CheeseText.gameObject.SetActive(false);
                 Destroy(other.gameObject);
                 score++;
-                scoreText.text = "Score：" + score.ToString();
+                scoreText.text = "Score：" + score.ToString()+"/25";
                 Debug.Log(score);
             }
         }

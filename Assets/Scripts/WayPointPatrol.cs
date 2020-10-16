@@ -62,4 +62,12 @@ public class WayPointPatrol : MonoBehaviour
         exclamationPop.SetActive(true);
         navMeshAgent.SetDestination(player.position);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+
+        }
+    }
 }
