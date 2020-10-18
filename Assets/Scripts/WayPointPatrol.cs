@@ -9,12 +9,14 @@ public class WayPointPatrol : MonoBehaviour
 {
     public NavMeshAgent navMeshAgent;
     //プレイヤーを見失う距離
-    public float loseSightDistance = 5.0f;
+    public float loseSightDistance = 1.0f;
 
     //ステージ内を巡回するポイント
     public Transform[] waypoints;
 
     public GameEnding gameEnding;
+
+    public GameObject detected;
 
     Transform player;
 
@@ -24,30 +26,27 @@ public class WayPointPatrol : MonoBehaviour
     bool isDetected=false;
 
     int currentWaypointIndex;
+
+    AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player").transform;
         navMeshAgent.SetDestination(waypoints[0].position);
-
+        audioSource = detected.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(navMeshAgent.stoppingDistance);
         //waypoint到着時に呼ばれる
         if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance&&!isDetected)
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
             navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
         }
-        //プレイヤー到着時に呼ばれる
-        if ((navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance) && isDetected)
-        {
-            exclamationPop.SetActive(false);
-            gameEnding.IsCaught();
-        }
+     
         if ((navMeshAgent.remainingDistance > loseSightDistance) && isDetected)
         {
             exclamationPop.SetActive(false);
@@ -61,13 +60,17 @@ public class WayPointPatrol : MonoBehaviour
         isDetected = true;
         exclamationPop.SetActive(true);
         navMeshAgent.SetDestination(player.position);
+        audioSource.Play();
     }
 
+    //プレイヤー到着時に呼ばれる
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-
+            exclamationPop.SetActive(false);
+            gameEnding.IsCaught();
+            Destroy(this);
         }
     }
 }

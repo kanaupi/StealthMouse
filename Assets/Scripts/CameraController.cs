@@ -8,7 +8,6 @@ public class CameraController : MonoBehaviour
     GameObject targetObj;
     Vector3 targetPos;
 
-    float angleH;
     float angleV;
     void Start()
     {
@@ -34,19 +33,15 @@ public class CameraController : MonoBehaviour
             float deltaAngleH = mouseInputX * Time.deltaTime * 200f;
             float deltaAngleV = -mouseInputY * Time.deltaTime * 200f;
 
-            angleH += deltaAngleH;
+
             angleV += deltaAngleV;
 
-            float clampedAngleH = Mathf.Clamp(angleH, -20, 20);
             float clampedAngleV = Mathf.Clamp(angleV, 0, 30);
 
-
-            float overshootH = angleH - clampedAngleH;
             float overshootV = angleV - clampedAngleV;
 
-            deltaAngleH -= overshootH;
             deltaAngleV -= overshootV;
-            angleH = clampedAngleH;
+     
             angleV = clampedAngleV;
             // targetの位置のY軸を中心に、回転（公転）する
             transform.RotateAround(targetPos, Vector3.up, deltaAngleH);

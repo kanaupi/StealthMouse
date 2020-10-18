@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    public GameObject jump;
+
+    
     float inputHorizontal;
     float inputVertical;
     Rigidbody rb;
     Animator animator;
+    AudioSource audioSource;
 
     float moveSpeed = 3f;
     bool isJump;
@@ -16,6 +20,7 @@ public class PlayerMove : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator=GetComponent<Animator>();
+        audioSource = jump.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -61,6 +66,7 @@ public class PlayerMove : MonoBehaviour
         {
             isJump = true;
             rb.velocity += new Vector3(0, 5, 0);
+            audioSource.Play();
         }
     }
 

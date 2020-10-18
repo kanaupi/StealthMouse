@@ -7,6 +7,8 @@ public class GetFoodScrpt : MonoBehaviour
 {
     public Text scoreText;
     public static int score;
+    public GameObject Click;
+    AudioSource audiosource;
     //アイテムに近づいた時に表示するテキストが入ったgameObject
     public GameObject CheeseText;
 
@@ -15,6 +17,7 @@ public class GetFoodScrpt : MonoBehaviour
     void Start()
     {
         score = 0;
+        audiosource = Click.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -33,6 +36,7 @@ public class GetFoodScrpt : MonoBehaviour
                 oneTimeCalled = false;
                 CheeseText.gameObject.SetActive(false);
                 Destroy(other.gameObject);
+                audiosource.Play();
                 score++;
                 scoreText.text = "Score：" + score.ToString()+"/25";
                 Debug.Log(score);
