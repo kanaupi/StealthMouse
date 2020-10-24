@@ -49,9 +49,15 @@ public class WayPointPatrol : MonoBehaviour
      
         if ((navMeshAgent.remainingDistance > loseSightDistance) && isDetected)
         {
+            Debug.Log("見失った");
+
             exclamationPop.SetActive(false);
             navMeshAgent.SetDestination(waypoints[currentWaypointIndex].position);
             isDetected = false;
+        }
+        if (isDetected)
+        {
+            navMeshAgent.SetDestination(player.position);
         }
     }
     //プレイヤーを発見した時に呼び出される
@@ -59,7 +65,7 @@ public class WayPointPatrol : MonoBehaviour
     {
         isDetected = true;
         exclamationPop.SetActive(true);
-        navMeshAgent.SetDestination(player.position);
+        
         audioSource.Play();
     }
 

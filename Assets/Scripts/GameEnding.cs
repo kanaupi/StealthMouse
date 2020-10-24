@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameEnding : MonoBehaviour
 {
-    public float displayImageDuration = 3f;
+    public float displayImageDuration = 7f;
     public CanvasGroup clearBackgroundImageCanvasGroup;
     public CanvasGroup caughtBackgroundImageCanvasGroup;
     public GameObject GameOver;
@@ -15,7 +15,7 @@ public class GameEnding : MonoBehaviour
     AudioSource ClearAudio;
 
     float timer;
-
+    bool calledEnd = false;
 
     // Start is called before the first frame update
     void Start()
@@ -40,14 +40,19 @@ public class GameEnding : MonoBehaviour
     {
         Destroy(MainSound);
 
-        timer += Time.deltaTime;
-
         imageCanvasGroup.alpha = 1;
+        calledEnd = true;
+    }
+    private void Update()
+    {
+        if (calledEnd) {
 
-        if (displayImageDuration < timer)
-        {
-            SceneManager.LoadScene("Result");
-
+            if (Input.GetMouseButtonDown(0))
+            {
+                SceneManager.LoadScene("Result");
+            }
         }
+
+        
     }
 }

@@ -1056,7 +1056,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 6747803307436705601}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.1
+  m_Radius: 2.5
   m_Speed: 1.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -1089,6 +1089,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   gameEnding: {fileID: 0}
+  detected: {fileID: 0}
   exclamationPop: {fileID: 0}
 --- !u!1 &6747803307436705603
 GameObject:
